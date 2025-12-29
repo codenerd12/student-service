@@ -1,0 +1,48 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: student-service
+  main:
+    allow-circular-references: true
+    web-application-type: reactive
+    #allow-bean-definition-overriding: true
+  webflux:
+    base-path: /student-service
+  jackson:
+    default-property-inclusion: NON_NULL
+  h2:
+    console:
+      enabled: true
+      path: /h2-console 
+  r2dbc:
+    url: r2dbc:h2:mem:///studentdb?options=DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+#  datasource:
+#    url: jdbc:h2:mem:studentdb
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password: password
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      minimum-idle: 5
+#      maximum-pool-size: 5
+#      idle-timeout: 300000
+#      max-lifetime: 1200000
+#      auto-commit: true
+    
+keycloak:
+  base-url: http://localhost:8080/realms/student
+  token-uri: /protocol/openid-connect/token
+  validate-uri: /protocol/openid-connect/token/introspect
+identity:
+  clientId: student-rest-api
+  clientSecret: 0p5yNjHufiOe1BvkOraFogeAcAuGE6gm
+  valid-clients: student-rest-api,order-api
+  request-body: >
+    {
+      "grant_type": "client_credentials"
+    }
+  validate-body: token={access_token}&token_type_hint=access_token
+  
