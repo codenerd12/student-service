@@ -3,6 +3,7 @@ package com.student;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,11 +18,12 @@ import io.r2dbc.spi.ConnectionFactory;
 import reactor.core.publisher.Hooks;
 
 @SpringBootApplication(
-		nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
+		nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class,
+		exclude = {RedisAutoConfiguration.class}
 		//,exclude = SecurityAutoConfiguration.class
 )
 @ComponentScan(
-		basePackages = {"com.student", "com.student.config", "com.student.controller"},
+		basePackages = {"com.student", "com.student.config"},
 		nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
 public class StudentServiceApplication {
