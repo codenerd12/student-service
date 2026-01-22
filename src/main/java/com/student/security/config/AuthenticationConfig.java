@@ -28,7 +28,10 @@ public class AuthenticationConfig {
 				.formLogin(ServerHttpSecurity.FormLoginSpec::disable)
 				.httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
 				.authorizeExchange(authorizeExchangeSpec -> authorizeExchangeSpec
-						.pathMatchers("/extra-hours/_healthcheck","/extra-hours/_status","/h2-console/**")
+						.pathMatchers("/extra-hours/_healthcheck","/extra-hours/_status","/h2-console/**",
+								"/v3/api-docs/**",
+								"/swagger-ui.html",
+								"/swagger-ui/**")
 						.permitAll()
 						.anyExchange()
 						.authenticated())

@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  springboot:
+    build: .
+    container_name: student-microservice
+    environment:
+      SERVER.PORT: 9091

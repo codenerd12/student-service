@@ -15,6 +15,8 @@ import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 
 import io.r2dbc.spi.ConnectionFactory;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import reactor.core.publisher.Hooks;
 
 @SpringBootApplication(
@@ -26,6 +28,11 @@ import reactor.core.publisher.Hooks;
 		basePackages = {"com.student", "com.student.config"},
 		nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
+@OpenAPIDefinition(info = @Info(
+	    title = "WebFlux API Example",
+	    version = "1.0",
+	    description = "Documentation for the WebFlux API"
+	))
 public class StudentServiceApplication {
 
 	public static void main(String[] args) {
